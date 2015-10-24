@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="FormBuilderApp">
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Customized style for dashboard -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Loads Angular core and routing -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular-route.js"></script>
+    <!-- Customized JS files -->
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="header/header.contoller.js"></script>
+    <script src="sidebar/sidebar.controller.js"></script>
+    <script src="service/UserService.js"></script>
+    <script src="service/FormService.js"></script>
+    <script src="login/login.controller.js"></script>
+    <script src="register/register.controller.js"></script>
+    <script src="profile/profile.controller.js"></script>
+    <script src="form/form.controller.js"></script>
+
+    <!-- Title -->
+    <title>Form Maker</title>
+</head>
+
+<body>
+    <!-- Top nav bar -->
+    <div ng-include="'header/header.view.html'" ng-controller="HeaderController"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- sidebar -->
+            <div ng-include="'sidebar/sidebar.view.html'" ng-controller="SidebarController"></div>
+            <!-- main section -->
+            <div ng-view></div>
+        </div>
+    </div>
+</body>
+
+</html>
