@@ -20,14 +20,14 @@
                     </td>
                     <td>
                         <span ng-click="addForm()" class="glyphicon glyphicon-plus" style="margin-left:10px;"></span>
-                        <span class="glyphicon glyphicon-ok" style="margin-left:10px;"></span>
+                        <span ng-click="updateForm()" class="glyphicon glyphicon-ok" style="margin-left:10px;"></span>
                     </td>
                 </tr>
                 <tr ng-repeat="form in forms track by $index">
-                    <td><a ng-click="selectForm($index)">{{form.name}}</a></td>
+                    <td><a>{{form.name}}</a></td>
                     <td>
                         <span ng-click="deleteForm($index)" class="glyphicon glyphicon-remove" style="margin-left:10px;"></span>
-                        <span class="glyphicon glyphicon-pencil" style="margin-left:10px;"></span>
+                        <span ng-click="selectForm($index)" class="glyphicon glyphicon-pencil" style="margin-left:10px;"></span>
                     </td>
                 </tr>
             </tbody>

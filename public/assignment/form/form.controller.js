@@ -29,7 +29,17 @@
             }
         }
 
-        $scope.updateForm = function () {}
+        $scope.updateForm = function () {
+            if ($scope.selected != null) {
+                $scope.forms[$scope.selected].name = $scope.name;
+                FormService.updateFormById($scope.forms[$scope.selected].id, $scope.forms[$scope.selected], updateCallback);
+            }
+            
+            function updateCallback(form) {
+                $scope.forms[$scope.selected] = form;
+            }
+        }
+        
         $scope.deleteForm = function (index) {
             FormService.deleteFormById($scope.forms[index].id, deleteCallback);
 
@@ -37,6 +47,10 @@
                 $scope.forms = forms;
             }
         }
-        $scope.selectForm = function (index) {}
+        
+        $scope.selectForm = function (index) {
+            $scope.selected = index;
+            $scope.name = $scope.forms[index].name;
+        }
     }
 })();
