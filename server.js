@@ -115,6 +115,16 @@ var SampleApp = function() {
         self.createRoutes();
         self.app = express.createServer();
         self.app.use(express.static('public/assignment'));
+        self.app.use(express.static('public/project/client'));
+        self.app.use(express.static('public/project/client/home'));
+        self.app.use(express.static('public/project/client/popular-movie'));
+        self.app.use(express.static('public/project/client/connect-fb'));
+        self.app.use(express.static('public/project/client/recommendation'));
+        self.app.use(express.static('public/project/client/movie-info'));
+        self.app.use(express.static('public/project/client/about'));
+        self.app.use(express.static('public/project/client/admin-login'));
+        self.app.use(express.static('public/project/client/admin-console'));
+        self.app.use(express.static('public/project/client/admin-user-info'));
         
         //  Add handlers for the app (from the routes).
         for (var r in self.routes) {
