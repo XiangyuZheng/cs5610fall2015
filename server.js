@@ -125,6 +125,7 @@ var SampleApp = function() {
         self.app.use(express.static('public/project/client/admin-login'));
         self.app.use(express.static('public/project/client/admin-console'));
         self.app.use(express.static('public/project/client/admin-user-info'));
+        self.app.use(express.static('public/project/client/admin-add-movie'));
         
         //  Add handlers for the app (from the routes).
         for (var r in self.routes) {
