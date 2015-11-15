@@ -6,7 +6,8 @@
     function FormController($rootScope, $scope, $location, FormService) {
         var currentUser = $rootScope.user;
         if (currentUser != null) {
-            FormService.findAllFormsForUser(currentUser.id, callback);
+            FormService.findAllFormsForUser(currentUser.id).then(callback);
+            $scope.userId = currentUser.id;
         }
 
         function callback(forms) {
@@ -20,8 +21,8 @@
             }
             var name = $scope.name;
             var form = {};
-            form.name = name;
-            FormService.createFormForUser(currentUser.id, form, createCallback);
+            form.title = name;
+            FormService.createFormForUser(currentUser.id, form).then(createCallback);
 
             function createCallback(newForm) {
                 $scope.forms.push(newForm);
@@ -31,26 +32,27 @@
 
         $scope.updateForm = function () {
             if ($scope.selected != null) {
-                $scope.forms[$scope.selected].name = $scope.name;
-                FormService.updateFormById($scope.forms[$scope.selected].id, $scope.forms[$scope.selected], updateCallback);
+                $scope.forms[$scope.selected].title = $scope.name;
+                FormService.updateFormById($scope.forms[$scope.selected].id, $scope.forms[$scope.selected])
+                    .then(updateCallback);
             }
-            
+
             function updateCallback(form) {
                 $scope.forms[$scope.selected] = form;
             }
         }
-        
-        $scope.deleteForm = function (index) {
-            FormService.deleteFormById($scope.forms[index].id, deleteCallback);
 
-            function deleteCallback(forms) {
-                $scope.forms = forms;
+        $scope.deleteForm = function (index) {
+            FormService.deleteFormById($scope.forms[index].id).then(deleteCallback);
+
+            function deleteCallback(response) {
+                FormService.findAllFormsForUser(currentUser.id).then(callback);
             }
         }
-        
+
         $scope.selectForm = function (index) {
             $scope.selected = index;
-            $scope.name = $scope.forms[index].name;
+            $scope.name = $scope.forms[index].title;
         }
     }
 })();

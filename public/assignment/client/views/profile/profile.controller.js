@@ -8,18 +8,18 @@
             var currentUser = $rootScope.user;
             $scope.username = currentUser.username;
             $scope.password = currentUser.password;
-            $scope.firstname = currentUser.firstname;
-            $scope.lastname = currentUser.lastname;
+            $scope.firstName = currentUser.firstName;
+            $scope.lastName = currentUser.lastName;
             $scope.email = currentUser.email;
         }
         $scope.update = function () {
             var newUser = {};
             newUser.username = $scope.username;
             newUser.password = $scope.password;
-            newUser.firstname = $scope.firstname;
-            newUser.lastname = $scope.lastname;
+            newUser.firstName = $scope.firstName;
+            newUser.lastName = $scope.lastName;
             newUser.email = $scope.email;
-            UserService.updateUser(currentUser.id, newUser, callback);
+            UserService.updateUser(currentUser.id, newUser).then(callback);
         }
 
         function callback(user) {

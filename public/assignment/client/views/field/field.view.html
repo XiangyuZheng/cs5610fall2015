@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!--    jquery    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- Customized style for dashboard -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <title>Form Maker</title>
+</head>
+
+<body>
+    <!-- Top nav bar -->
+    <nav class="navbar navbar-fixed-top black-border">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand black-font" href="home.html">Form Maker</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Username</a></li>
+                    <li><a class="active">|</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar black-border">
+                <ul class="nav nav-sidebar">
+                    <li class="black-border-bottom"><a href="#/home">Home</a></li>
+                    <li class="black-border-bottom"><a href="#/profile">Profile</a></li>
+                    <li class="black-border-bottom"><a href="#/admin">Admin</a></li>
+                    <li class="black-border-bottom active"><a href="#/form">Forms</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h1 class="page-header">Forms : Registration Form</h1>
+                <div class="row placeholders">
+                    <ul class="nav nav-tabs">
+                        <li><a href="#/form">Forms</a></li>
+                        <li class="active"><a>Fields</a></li>
+                    </ul>
+                    <form>
+                        <div ng-repeat="field in model.fields">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="form-group" ng-switch="field.type">
+                                        <br>
+                                        <!-- Single Line Text Field -->
+                                        <div ng-switch-when="TEXT">
+                                            <label for="{{field.id}}">{{field.label}}:</label>
+                                            <input type="text" class="form-control" id="{{field.id}}" placeholder="{{field.placeholder}}">
+                                        </div>
+                                        <!-- Multi Line Text Field -->
+                                        <div ng-switch-when="TEXTAREA">
+                                            <label for="{{field.id}}">{{field.label}}:</label>
+                                            <textarea type="text" class="form-control" id="{{field.id}}" placeholder="{{field.placeholder}}" />
+                                        </div>
+                                        <!-- Date Field -->
+                                        <div ng-switch-when="DATE">
+                                            <label for="{{field.id}}">{{field.label}}:</label>
+                                            <input type="text" class="form-control" id="{{field.id}}" placeholder="{{field.placeholder}}" onfocus="(this.type='date')">
+                                        </div>
+                                        <!-- Dropdown Field -->
+                                        <div ng-switch-when="OPTIONS">
+                                            <label for="{{field.id}}">{{field.label}}:</label>
+                                            <select id="{{field.id}}" class="form-control">
+                                                <option ng-repeat="option in field.options" value="{{option.value}}">{{option.label}}</option>
+                                            </select>
+                                        </div>
+                                        <!-- Checkboxes Field -->
+                                        <div ng-switch-when="CHECKBOXES">
+                                            <label for="{{field.id}}">{{field.label}}:</label>
+                                            <div id="{{field.id}}" class="checkbox">
+                                                <label class="block" ng-repeat="option in field.options">
+                                                    <input type="checkbox" value="{{option.value}}">{{option.label}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- Radio Buttons Field -->
+                                        <div ng-switch-when="RADIOS">
+                                            <label for="{{field.id}}">{{field.label}}:</label>
+                                            <div id="{{field.id}}" class="radio">
+                                                <label class="block" ng-repeat="option in field.options">
+                                                    <input type="radio" ng-model="$parent.pageSet" value="{{option.value}}">{{option.label}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <span class="glyphicon glyphicon-pencil" style="margin-top:35px;"></span>
+                                    <span class="glyphicon glyphicon-plus" style="margin-top:35px;"></span>
+                                    <span ng-click="model.removeField(field)" class="glyphicon glyphicon-remove" style="margin-top:35px;"></span>
+                                    <span class="glyphicon glyphicon-align-justify" style="margin-top:35px;"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label for="add-field">Add New Field:</label>
+                                    <select ng-model="model.fieldType" id="add-field" class="form-control">
+                                        <option value="TEXT">Single Line Text Field</option>
+                                        <option value="TEXTAREA">Multi Line Text Field</option>
+                                        <option value="DATE">Date Field</option>
+                                        <option value="OPTIONS">Dropdown Field</option>
+                                        <option value="CHECKBOXES">Checkboxes Field</option>
+                                        <option value="RADIOS">Radio Buttons Field</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <span ng-click="model.addField(model.fieldType)" class="glyphicon glyphicon-plus" style="margin-top:35px;"></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

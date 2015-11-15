@@ -158,3 +158,8 @@ label {
 .radio {
     clear: both;
 }
+
+.block {
+    display: block;
+    clear: both;
+}

@@ -3,8 +3,8 @@
 
     <div class="row placeholders">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="forms.html">Forms</a></li>
-            <li><a href="form-fields.html">Fields</a></li>
+            <li class="active"><a href="#/form">Forms</a></li>
+            <li><a>Fields</a></li>
         </ul>
         <table id="usertable" class="table table-striped table-bordered table-hover">
             <thead>
@@ -24,7 +24,7 @@
                     </td>
                 </tr>
                 <tr ng-repeat="form in forms track by $index">
-                    <td><a>{{form.name}}</a></td>
+                    <td><a href="#/user/{{userId}}/form/{{form.id}}/fields">{{form.title}}</a></td>
                     <td>
                         <span ng-click="deleteForm($index)" class="glyphicon glyphicon-remove" style="margin-left:10px;"></span>
                         <span ng-click="selectForm($index)" class="glyphicon glyphicon-pencil" style="margin-left:10px;"></span>

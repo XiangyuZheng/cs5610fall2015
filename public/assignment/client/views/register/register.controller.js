@@ -9,7 +9,7 @@
             user.username = $scope.username;
             user.password = $scope.password;
             user.email = $scope.email;
-            UserService.createUser(user, callback);
+            UserService.createUser(user, callback).then(callback);
         }
         
         function callback(user) {
