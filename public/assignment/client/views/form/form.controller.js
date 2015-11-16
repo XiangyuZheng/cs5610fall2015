@@ -55,4 +55,5 @@
             $scope.name = $scope.forms[index].title;
         }
     }
+    
 })();
