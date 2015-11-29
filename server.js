@@ -7,6 +7,19 @@ var bodyParser = require('body-parser');
 var multer = require('multer'); // v1.0.5
 var upload = multer(); // for parsing multipart/form-data
 
+var mongoose = require('mongoose');
+var connectionString = "mongodb://localhost/CS5610";
+
+if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
+    connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+        process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+        process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+        process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+        process.env.OPENSHIFT_APP_NAME;
+}
+
+var db = mongoose.connect(connectionString);
+
 /**
  *  Define the sample application.
  */
@@ -167,7 +180,7 @@ var SampleApp = function () {
 
     self.bindServices = function () {
         var servicesModule = require("./public/assignment/server/app.js");
-        var services = new servicesModule(self.app);
+        var services = new servicesModule(self.app, mongoose, db);
     }
 
     /**

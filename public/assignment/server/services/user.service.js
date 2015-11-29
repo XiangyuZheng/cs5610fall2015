@@ -5,8 +5,11 @@ module.exports = function (app, userModel, db) {
     app.post("/api/assignment/user", function (req, res) {
         var user = req.body;
         user.id = uuid.v1();
-        var response = userModel.createUser(user);
-        res.json(response);
+        userModel.createUser(user).then(callback);
+        
+        function callback(response) {
+            res.json(response);
+        }
     });
 
     app.get("/api/assignment/user", function (req, res) {
@@ -17,33 +20,43 @@ module.exports = function (app, userModel, db) {
                 username: username,
                 password: password
             };
-            var response = userModel.findUserByCredentials(credentials);
-            res.json(response);
+            userModel.findUserByCredentials(credentials).then(callback);
         } else if (username != null) {
-            var response = userModel.findUserByUsername(username);
-            res.json(response);
+            userModel.findUserByUsername(username).then(callback);
         } else {
-            var response = userModel.findAllUsers();
+            userModel.findAllUsers().then(callback).then(callback);
+        }
+        
+        function callback(response) {
             res.json(response);
         }
     });
 
     app.get("/api/assignment/user/:id", function (req, res) {
         var id = req.params["id"];
-        var response = userModel.findUserById(id);
-        res.json(response);
+        userModel.findUserById(id).then(callback);
+        
+        function callback(response) {
+            res.json(response);
+        }
     });
 
     app.put("/api/assignment/user/:id", function (req, res) {
         var id = req.params["id"];
         var user = req.body;
-        var response = userModel.updateUser(id, user);
-        res.json(response);
+        userModel.updateUser(id, user).then(callback);
+        
+        function callback(response) {
+            res.json(response);
+        }
     });
 
     app.delete("/api/assignment/user/:id", function (req, res) {
         var id = req.params["id"];
-        var response = userModel.deleteUser(id);
-        res.json(response);
+        userModel.deleteUser(id).then(callback);
+        
+        function callback(response) {
+            res.json(response);
+        }
     });
 };
