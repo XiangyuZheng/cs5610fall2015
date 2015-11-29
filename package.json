@@ -29,8 +29,7 @@
     "mongodb": "^2.0.49",
     "multer": "~1.1.0",
     "node-uuid": "~1.4.7",
-    "q": "~1.4.1",
-    "mongodb": "2.0.49"
+    "q": "~1.4.1"
   },
   "devDependencies": {},
   "bundleDependencies": [],
