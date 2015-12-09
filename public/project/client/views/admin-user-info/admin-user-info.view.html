@@ -1,0 +1,55 @@
+<div class="hero-spacer">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1></h1>
+        </div>
+    </div>
+    </form>
+    <table id="usertable" class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th><span class="caret"></span> ID</th>
+                <th><span class="caret"></span> User Name</th>
+                <th><span class="caret"></span> First Name</th>
+                <th><span class="caret"></span> Last Name</th>
+                <th><span class="caret"></span> Email</th>
+                <th><span class="caret"></span> Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input ng-model="adminUserInfo.id" type="text" placeholder="ID">
+                </td>
+                <td>
+                    <input ng-model="adminUserInfo.username" type="text" placeholder="Username">
+                </td>
+                <td>
+                    <input ng-model="adminUserInfo.firstName" type="text" placeholder="FirstName">
+                </td>
+                <td>
+                    <input ng-model="adminUserInfo.lastName" type="text" placeholder="LastName">
+                </td>
+                <td>
+                    <input ng-model="adminUserInfo.email" type="text" placeholder="Email">
+                </td>
+                <td>
+                    <span ng-click="adminUserInfo.addUser()" class="glyphicon glyphicon-plus" style="margin-left:10px;"></span>
+                    <span ng-click="adminUserInfo.updateUser()" class="glyphicon glyphicon-ok" style="margin-left:10px;"></span>
+                </td>
+            </tr>
+            <tr ng-repeat="user in adminUserInfo.users track by $index">
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>
+                    <span ng-click="adminUserInfo.deleteUser($index)" class="glyphicon glyphicon-remove" style="margin-left:10px;"></span>
+                    <span ng-click="adminUserInfo.selectUser($index)" class="glyphicon glyphicon-pencil" style="margin-left:10px;"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

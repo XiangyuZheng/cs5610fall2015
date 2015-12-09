@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="MovieApp">
+
+<head>
+    <meta name="referrer" content="no-referrer" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Loads Angular core and routing -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular-route.js"></script>
+
+    <!-- Customized CSS -->
+    <link href="css/half-slider.css" rel="stylesheet">
+    <link href="css/heroic-features.css" rel="stylesheet">
+    <link href="css/my-style.css" rel="stylesheet">
+
+    <!-- Customized JS files -->
+    <script src="project-app.js"></script>
+    <script src="project-config.js"></script>
+    <script src="project-header/header.controller.js"></script>
+    <script src="project-home/project-home.controller.js"></script>
+    <script src="project-login/project-login.controller.js"></script>
+    <script src="admin-add-movie/admin-add-movie.controller.js"></script>
+    <script src="admin-movie/admin-movie.controller.js"></script>
+    <script src="admin-login/admin-login.controller.js"></script>
+    <script src="admin-user-info/admin-user-info.controller.js"></script>
+    <script src="movie-info/movie-info.controller.js"></script>
+    <script src="popular-movie/popular-movie.controller.js"></script>
+    <script src="search/search.controller.js"></script>
+    <script src="recom-choose/recom-choose.controller.js"></script>
+    <script src="recommendation/recommendation.controller.js"></script>
+    <script src="user-profile/user-profile.controller.js"></script>
+    <script src="user-register/user-register.controller.js"></script>
+    <script src="services/MovieService.js"></script>
+    <script src="services/ProjectUserService.js"></script>
+
+    <!-- Title -->
+    <title>MovieDotCom</title>
+</head>
+
+<body ng-controller="BodyController as bodyController">
+    <div ng-include="'project-header/header.view.html'" ng-controller="HeaderController as header"></div>
+    
+    <!-- Half Page Image Background Carousel Header -->
+    <header ng-show="bodyController.isHomePage()" id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill" style="background-image: url('http://www.unicron.us/tf2007/moviepromo/transformers_final_standee.jpg');"></div>
+            </div>
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill" style="background-image: url('http://lodgiesreviews.altervista.org/images/inception_poster.jpg');"></div>
+            </div>
+            <div class="item">
+                <!-- Set the third background image using inline CSS below. -->
+                <div class="fill" style="background-image: url('http://www.wallpapersbyte.com/wp-content/uploads/2015/07/Fantastic-Four-4-2015-Movie-Poster-The-Human-Torch-Mister-Fantastic-Susan-Storm-Thing-Doctor-Doom-WallpapersByte-com-2560x1080.jpg');"></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div ng-view></div>
+    </div>
+</body>
+
+<!-- Script to Activate the Carousel -->
+<script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    });
+</script>
+
+</html>

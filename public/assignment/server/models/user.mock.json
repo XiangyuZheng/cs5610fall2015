@@ -33,5 +33,19 @@
         "lastName": "Norton",
         "username": "ed",
         "password": "ed"
+    },
+    {
+        "id": 1234,
+        "firstName": "user1first",
+        "lastName": "user1last",
+        "username": "user1",
+        "password": "user1"
+    },
+    {
+        "id": 2345,
+        "firstName": "adminfirst",
+        "lastName": "adminlast",
+        "username": "admin",
+        "password": "admin"
     }
 ]

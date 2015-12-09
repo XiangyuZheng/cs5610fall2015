@@ -142,16 +142,7 @@ var SampleApp = function () {
         self.app.use(express.static('public/assignment/client/views'));
         self.app.use(express.static('public/assignment/server'));
         self.app.use(express.static('public/project/client'));
-        self.app.use(express.static('public/project/client/home'));
-        self.app.use(express.static('public/project/client/popular-movie'));
-        self.app.use(express.static('public/project/client/connect-fb'));
-        self.app.use(express.static('public/project/client/recommendation'));
-        self.app.use(express.static('public/project/client/movie-info'));
-        self.app.use(express.static('public/project/client/about'));
-        self.app.use(express.static('public/project/client/admin-login'));
-        self.app.use(express.static('public/project/client/admin-console'));
-        self.app.use(express.static('public/project/client/admin-user-info'));
-        self.app.use(express.static('public/project/client/admin-add-movie'));
+        self.app.use(express.static('public/project/client/views'));
 
         self.app.use(bodyParser.json()); // for parsing application/json
         self.app.use(bodyParser.urlencoded({
@@ -181,6 +172,9 @@ var SampleApp = function () {
     self.bindServices = function () {
         var servicesModule = require("./public/assignment/server/app.js");
         var services = new servicesModule(self.app, mongoose, db);
+        
+        var projectServicesModule = require("./public/project/server/app.js");
+        var projectServices = new projectServicesModule(self.app, mongoose, db);
     }
 
     /**
