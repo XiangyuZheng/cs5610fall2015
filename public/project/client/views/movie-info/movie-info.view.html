@@ -18,5 +18,21 @@
         <!-- /.col-md-4 -->
     </div>
     <!-- /.row -->
-
+    <h3>Reviews</h3>
+    <p ng-show="movieInfo.reviews.length < 2">{{movieInfo.reviews.length}} review</p>
+    <p ng-show="movieInfo.reviews.length >= 2">{{movieInfo.reviews.length}} reviews</p>
+    <div class="row">
+        <div ng-repeat="r in movieInfo.reviews" class="col-lg-8 col-md-9">
+            <h4><a href="#/profile/{{r.user.id}}">{{r.user.username}}</a>: </h4>
+            <p>{{r.content}}</p>
+            <p><font color="grey">{{r.time}}</font></p>
+        </div>
+    </div>
+    <h3>Write your reviews:</h3>
+    <div class="row">
+        <div class="col-lg-8 col-md-9">
+            <textarea ng-model="movieInfo.content" placeholder="Write your reviews" style="width: 100%"></textarea>
+        </div>
+    </div>
+    <button ng-click="movieInfo.create()" class="btn btn-success">Submit</button>
 </div>

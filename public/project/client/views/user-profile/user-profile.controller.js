@@ -6,6 +6,15 @@
     function ProfileController($rootScope, $routeParams, UserService) {
         var profile = this;
         profile.user = $rootScope.user;
+        var uid = $routeParams.userId;
+        if (profile.user == null || profile.user.id != uid) {
+            profile.isSelf = false;
+            UserService.findUserById(uid).then(function (user) {
+                profile.user = user;
+            });
+        } else {
+            profile.isSelf = true;
+        }
 
         profile.update = function () {
             var newUser = {};

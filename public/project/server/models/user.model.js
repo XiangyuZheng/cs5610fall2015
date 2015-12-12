@@ -49,7 +49,7 @@ module.exports = function (app, mongoose, UserSchema) {
     function findUserById(id) {
         var deferred = Q.defer();
         UserModel.find({
-            id: user.id
+            id: id
         }, function (err, result) {
             if (result.length == 0) {
                 deferred.resolve(null);

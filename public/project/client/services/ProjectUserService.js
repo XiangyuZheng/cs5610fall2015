@@ -8,6 +8,7 @@
         var service = {
             "findUserByUsernameAndPassword": findUserByUsernameAndPassword,
             "findAllUsers": findAllUsers,
+            "findUserById": findUserById,
             "createUser": createUser,
             "deleteUserById": deleteUserById,
             "updateUser": updateUser
@@ -27,6 +28,15 @@
         function findAllUsers() {
             var deferred = $q.defer();
             $http.get("/api/project/user")
+                .success(function (response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        function findUserById(id) {
+            var deferred = $q.defer();
+            $http.get("/api/project/user/" + id)
                 .success(function (response) {
                     deferred.resolve(response);
                 });
