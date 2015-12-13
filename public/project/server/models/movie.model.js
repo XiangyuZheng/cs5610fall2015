@@ -11,7 +11,8 @@ module.exports = function (app, mongoose, MovieSchema) {
         updateMovie: updateMovie,
         deleteMovie: deleteMovie,
         getRecommendedMovies: getRecommendedMovies,
-        getFilteredMovies: getFilteredMovies
+        getFilteredMovies: getFilteredMovies,
+        getMoviesForAdmin: getMoviesForAdmin
     }
     return api;
 
@@ -117,8 +118,18 @@ module.exports = function (app, mongoose, MovieSchema) {
         MovieModel.find({
             Year: yearRegex,
             Genre: genreRegex,
-            Rating: {$gt : rating}
+            Rating: {
+                $gt: rating
+            }
         }).limit(16).exec(function (err, result) {
+            deferred.resolve(result);
+        });
+        return deferred.promise;
+    }
+
+    function getMoviesForAdmin() {
+        var deferred = Q.defer();
+        MovieModel.find().limit(20).exec(function (err, result) {
             deferred.resolve(result);
         });
         return deferred.promise;

@@ -5,7 +5,7 @@
 
     function AdminMovieController($rootScope, MovieService) {
         var adminMovie = this;
-        MovieService.getPopularMovies().then(function (movies) {
+        MovieService.getMoviesForAdmin().then(function (movies) {
             if ($rootScope.user == null || $rootScope.user.username != "admin") {
                 return;
             }

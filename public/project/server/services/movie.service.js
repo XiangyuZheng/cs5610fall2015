@@ -18,6 +18,14 @@ module.exports = function (app, movieModel, db) {
         }
     });
 
+    app.get("/api/project/movie/admin", function (req, res) {
+        movieModel.getMoviesForAdmin().then(callback);
+
+        function callback(response) {
+            res.json(response);
+        }
+    });
+
     app.get("/api/project/movie/id/:movieId", function (req, res) {
         var movieId = req.params["movieId"];
         movieModel.getMovieById(movieId).then(callback);

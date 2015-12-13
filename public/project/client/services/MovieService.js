@@ -13,7 +13,8 @@
             "createMovie": createMovie,
             "updateMovie": updateMovie,
             "deleteMovie": deleteMovie,
-            "getFilteredMovies": getFilteredMovies
+            "getFilteredMovies": getFilteredMovies,
+            "getMoviesForAdmin": getMoviesForAdmin
         }
 
         return service;
@@ -30,6 +31,15 @@
         function getPopularMovies() {
             var deferred = $q.defer();
             $http.get("/api/project/movie/popular")
+                .success(function (response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+        
+        function getMoviesForAdmin() {
+            var deferred = $q.defer();
+            $http.get("/api/project/movie/admin")
                 .success(function (response) {
                     deferred.resolve(response);
                 });
