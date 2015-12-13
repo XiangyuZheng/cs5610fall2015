@@ -46,8 +46,8 @@
                 <td>{{user.lastName}}</td>
                 <td>{{user.email}}</td>
                 <td>
-                    <span ng-click="adminUserInfo.deleteUser($index)" class="glyphicon glyphicon-remove" style="margin-left:10px;"></span>
-                    <span ng-click="adminUserInfo.selectUser($index)" class="glyphicon glyphicon-pencil" style="margin-left:10px;"></span>
+                    <span ng-hide="user.username == 'admin' || user.username == 'user1'" ng-click="adminUserInfo.deleteUser($index)" class="glyphicon glyphicon-remove" style="margin-left:10px;"></span>
+                    <span ng-hide="user.username == 'admin' || user.username == 'user1'" ng-click="adminUserInfo.selectUser($index)" class="glyphicon glyphicon-pencil" style="margin-left:10px;"></span>
                 </td>
             </tr>
         </tbody>
